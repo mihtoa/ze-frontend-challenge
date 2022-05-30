@@ -29,7 +29,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      favicon: './favicon.ico',
+      favicon: './public/favicon.ico',
       meta: {
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
         'theme-color': 'yellow',
