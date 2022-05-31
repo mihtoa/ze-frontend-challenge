@@ -18,17 +18,15 @@ const client = new ApolloClient({
 export default function Page() {
   return (
     <BrowserRouter>
-      <main>
-        <Header />
-        <nav>
-          <Link to="/">Home</Link> | <Link to="produtos">Produtos</Link>
-        </nav>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="produtos" element={<Products />} />
-        </Routes>
-        <Footer />
-      </main>
+      <Header />
+      <nav>
+        <Link to="/">Home</Link> | <Link to="produtos">Produtos</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="produtos" element={<Products />} />
+      </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
