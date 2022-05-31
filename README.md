@@ -1,6 +1,8 @@
 # ze-frontend-challenge
 
-Hello! Nice to see you here :smile:. This project is a frontend challenge requested by a Zé Delivery job application.
+Hello! Nice to see you here :smile:
+
+This project is a frontend challenge requested by a Zé Delivery job application.
 
 ### The challenge
 
@@ -27,29 +29,24 @@ Tools
 - Sass
 - Prettier
 
-### And why?
-
-Best regards,
-Milene Toazza
-
-
 ### To do list
 
-[] Explore data structures from the API
-[] Create a Loader component
-[] Create a fetcher hook
-[] Set primary colors
-[] Get logo, favicon and meta information's
-[] Get data from Home screen
-[] Set data types Home screen
-[] Storage user location information
-[] Get data from Products screen using user location information
-[] Set data types Products
-[] Create Header component
-[] Create Footer component
-[] Create Home layout
-[] Create Products layout
-[] Review page's responsiveness
-[] Add integration tests - testing library
-[] Upload the application in production environment
-[] That's all folks! \o/
+- [x] Explore data structures from the API
+- [x] Create a Loader component
+- [x] Create a fetcher hook
+- [x] Set primary color
+- [] Get logo, favicon and meta information's
+- [x] Get data from Home screen
+- [] Set data types Home screen
+- [x] Storage user location information
+- [x] Get data from Products screen using user location information
+- [] Set data types Products
+- [x] Create Header component
+- [x] Create Footer component
+- [] Create Home layout
+- [] Create Products layout
+- [] Review page's responsiveness
+- [] Add integration tests - testing library
+- [] That's all folks! \o/
+
+Best regards
