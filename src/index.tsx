@@ -1,6 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 import Home from './home'
 import Products from './products'
@@ -9,9 +10,14 @@ import { Header, Footer } from './common'
 
 import './main.scss'
 
-class Square extends React.Component {
-  render() {
-    return (
+const client = new ApolloClient({
+  uri: 'https://frontend-code-challenge-api.ze.delivery/graphql',
+  cache: new InMemoryCache(),
+})
+
+export default function Page() {
+  return (
+    <BrowserRouter>
       <main>
         <Header />
         <nav>
@@ -23,13 +29,13 @@ class Square extends React.Component {
         </Routes>
         <Footer />
       </main>
-    )
-  }
+    </BrowserRouter>
+  )
 }
 
 const root = createRoot(document.getElementById('root'))
 root.render(
-  <BrowserRouter>
-    <Square />
-  </BrowserRouter>
+  <ApolloProvider client={client}>
+    <Page />
+  </ApolloProvider>
 )

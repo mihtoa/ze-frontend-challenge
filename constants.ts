@@ -1,0 +1,3 @@
+const DISTRIBUTOR_LOCAL_STORAGE_KEY = 'current_distributor'
+
+export { DISTRIBUTOR_LOCAL_STORAGE_KEY }
