@@ -2,21 +2,14 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const env = process.env.NODE_ENV || 'development'
+const isDevelopment = env === 'development'
 
 module.exports = {
   entry: './src/index.tsx',
   mode: env,
-  cache: env == 'development',
+  cache: isDevelopment,
   module: {
     rules: [
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
-      },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
