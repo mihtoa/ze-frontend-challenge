@@ -4,15 +4,15 @@ import styled from 'styled-components'
 import { Navigate } from 'react-router-dom'
 
 import useGeolocation from 'react-hook-geolocation'
-import useCoordinates from '../hooks/useCoordinates'
-import useDistributor from '../hooks/useDistributor'
-import useLocalStorage from '../hooks/useLocalStorage'
+import useCoordinates from '../../hooks/useCoordinates'
+import useDistributor from '../../hooks/useDistributor'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
-import { DISTRIBUTOR_LOCAL_STORAGE_KEY } from '../../constants'
+import { DISTRIBUTOR_LOCAL_STORAGE_KEY } from '../../../constants'
 
-import { Container } from '../common'
+import { Container } from '../../common'
 
-import Form from './Form'
+import Form from '../../components/Form'
 
 const Main = styled.main`
   background-color: var(--primary-color);

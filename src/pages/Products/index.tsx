@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { DISTRIBUTOR_LOCAL_STORAGE_KEY } from '../../constants'
+import { DISTRIBUTOR_LOCAL_STORAGE_KEY } from '../../../constants'
 
-import useLocalStorage from '../hooks/useLocalStorage'
-import useProducts from '../hooks/useProducts'
-import useCategories from '../hooks/useCategories'
+import useLocalStorage from '../../hooks/useLocalStorage'
+import useProducts from '../../hooks/useProducts'
+import useCategories from '../../hooks/useCategories'
 
-import { Loader, Container } from '../common'
+import { Loader, Container } from '../../common'
 import Product, { TypeProps as TypeProduct } from './Product'
 
 const Wrapper = styled.div`
