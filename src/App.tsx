@@ -22,8 +22,9 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Roboto', sans-serif;
-    font-size: clamp(15px, 1.6vw, 20px);
+    font-size: clamp(14px, 1vw, 20px);
     background-color: var(--light-gray);
+    color: var(--dark-gray);
   }
 
   img {

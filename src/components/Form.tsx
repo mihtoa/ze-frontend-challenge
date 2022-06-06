@@ -2,8 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-  margin: 0 auto;
   width: 100%;
+  margin: 0 auto;
+`
+
+const FormStyled = styled.form`
+  height: 3rem;
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  display: block;
+  position: relative;
 `
 
 const Icon = styled.div`
@@ -19,10 +28,8 @@ const Input = styled.input`
   border: 3px solid #adadad;
   border-radius: 40px;
   outline: none;
-  height: 3rem;
-  width: 30rem;
-  margin: 0 auto;
-  display: block;
+  width: 100%;
+  height: 100%;
   padding: 1rem;
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
@@ -33,16 +40,28 @@ const Input = styled.input`
   }
 `
 
-const LocationButton = styled.button`
+const ArrowButton = styled.button`
+  float: right;
   background-color: transparent;
   border: none;
-  opacity: 0.6;
-  margin: 0.5rem auto;
-  display: block;
-  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2.25rem;
+  width: 3rem;
+  font-size: 2rem;
+  color: var(--dark-gray);
+  z-index: 1;
+  cursor: pointer;
 `
 
-export default function Form() {
+export default function Form({
+  onChange,
+  onSubmit,
+}: {
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onSubmit: React.FormEventHandler<Element>
+}) {
   return (
     <Wrapper>
       <Icon>
@@ -70,15 +89,17 @@ export default function Form() {
         </svg>
       </Icon>
 
-      <form action="">
+      <FormStyled onSubmit={onSubmit}>
         <Input
           type="text"
           name="address"
           id="inputAdress"
-          placeholder="Qual seu endereço?"
+          placeholder="Rua Ricardo Lunardelli, 123, 04719-070, São Paulo"
+          onChange={onChange}
+          required
         />
-      </form>
-      <LocationButton type="button">Usar localização atual</LocationButton>
+        <ArrowButton type="submit">→</ArrowButton>
+      </FormStyled>
     </Wrapper>
   )
 }

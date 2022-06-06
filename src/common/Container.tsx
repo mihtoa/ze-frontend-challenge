@@ -6,7 +6,7 @@ type TypeProps = {
 }
 
 const Wrapper = styled.div`
-  padding: 0 5rem;
+  padding: 0 5%;
   margin: 0 auto;
   width: 100%;
 `

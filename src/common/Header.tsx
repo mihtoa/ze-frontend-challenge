@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Container from './Container'
@@ -17,7 +18,8 @@ const Navigation = styled.nav`
 
 const Logo = styled.figure`
   height: 3.5rem;
-  max-width: 50%;
+  width: 11rem;
+  max-width: 50vw;
 
   > img {
     height: 100%;
@@ -46,9 +48,11 @@ export default function Header() {
     <HeaderWrapper>
       <Container>
         <Navigation>
-          <Logo>
-            <img src="/white-logo.png" alt="Logo Zé Delivery" />
-          </Logo>
+          <Link to="/">
+            <Logo>
+              <img src="/white-logo.png" alt="Logo Zé Delivery" />
+            </Logo>
+          </Link>
 
           <Login href="#">Entrar</Login>
         </Navigation>

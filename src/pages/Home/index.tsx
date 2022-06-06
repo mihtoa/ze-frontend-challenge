@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-
 import { Navigate } from 'react-router-dom'
+import { useLazyQuery, gql } from '@apollo/client'
 
-import useGeolocation from 'react-hook-geolocation'
 import useCoordinates from '../../hooks/useCoordinates'
-import useDistributor from '../../hooks/useDistributor'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
-import { DISTRIBUTOR_LOCAL_STORAGE_KEY } from '../../../constants'
-
 import { Container } from '../../common'
-
 import Form from '../../components/Form'
 
 const Main = styled.main`
@@ -32,31 +27,45 @@ const Title = styled.h2`
   text-align: center;
 `
 
-export default function Home() {
-  // const apiKey = 'AIzaSyDTCQZ3MnGV5CuuRIKXd5WP3t9LVdHgAx4'
-  // const address = 'Rua Américo Brasiliense, São Paulo'
+const DISTRIBUTOR_QUERY = gql`
+  query PocSearch($pocSearchLat: String!, $pocSearchLong: String!) {
+    pocSearch(lat: $pocSearchLat, long: $pocSearchLong) {
+      id
+      status
+      name
+    }
+  }
+`
 
-  // const geolocation = useGeolocation()
-  // const coordinates = useCoordinates({ apiKey, address })
-  // const distributor = useDistributor({
-  //   lat: '-23.632919',
-  //   lng: '-46.709453',
-  // })
-  const [currDistributor, setCurrDistributor] = useLocalStorage(
+export default function Home() {
+  const [address, setAdress] = useState('')
+  const apiKey = 'AIzaSyDTCQZ3MnGV5CuuRIKXd5WP3t9LVdHgAx4'
+  const config = { apiKey, address }
+
+  const DISTRIBUTOR_LOCAL_STORAGE_KEY = 'current_distributor'
+  const [distributorLS, setDistributorLS] = useLocalStorage(
     DISTRIBUTOR_LOCAL_STORAGE_KEY,
     null
   )
 
-  // useEffect(() => {
-  //   if (!distributor.loading && !!distributor?.data?.pocSearch) {
-  //     setCurrDistributor(
-  //       DISTRIBUTOR_LOCAL_STORAGE_KEY,
-  //       distributor.data.pocSearch[0]
-  //     )
-  //   }
-  // }, [distributor])
+  const [getDistributor, { data: distributor }] =
+    useLazyQuery(DISTRIBUTOR_QUERY)
 
-  if (currDistributor) {
+  const handleSubmit: React.FormEventHandler<Element> = async (event) => {
+    event.preventDefault()
+    const { lat, lng } = await useCoordinates(config)
+
+    getDistributor({
+      variables: {
+        pocSearchLat: lat.toString(),
+        pocSearchLong: lng.toString(),
+      },
+    })
+
+    setDistributorLS(DISTRIBUTOR_LOCAL_STORAGE_KEY, distributor.pocSearch[0])
+  }
+
+  if (distributorLS) {
     return <Navigate to="/produtos" />
   }
 
@@ -68,7 +77,10 @@ export default function Home() {
             <strong>Bebidas geladas</strong> a <strong>preço</strong> de
             <br /> mercado na sua casa <strong>agora</strong>
           </Title>
-          <Form />
+          <Form
+            onChange={(event) => setAdress(event.target.value)}
+            onSubmit={handleSubmit}
+          />
         </Wrapper>
       </Container>
     </Main>

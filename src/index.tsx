@@ -7,6 +7,11 @@ import App from './App'
 const client = new ApolloClient({
   uri: 'https://frontend-code-challenge-api.ze.delivery/graphql',
   cache: new InMemoryCache(),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'cache-and-network',
+    },
+  },
 })
 
 const root = createRoot(document.getElementById('root'))
