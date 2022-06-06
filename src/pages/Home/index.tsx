@@ -62,7 +62,7 @@ export default function Home() {
       },
     })
 
-    setDistributorLS(DISTRIBUTOR_LOCAL_STORAGE_KEY, distributor.pocSearch[0])
+    setDistributorLS(DISTRIBUTOR_LOCAL_STORAGE_KEY, distributor?.pocSearch[0])
   }
 
   if (distributorLS) {

@@ -12,8 +12,8 @@ const Wrapper = styled.div`
 
 const List = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  gap: 1rem;
 `
 
 export default function Products() {
@@ -21,6 +21,7 @@ export default function Products() {
     <main>
       <Container>
         <Wrapper>
+          <h4>Categorias</h4>
           <Categories />
           <h4>Produtos</h4>
           <List>

@@ -48,7 +48,7 @@ export default function Header() {
     <HeaderWrapper>
       <Container>
         <Navigation>
-          <Link to="/">
+          <Link to="/" onClick={() => window.localStorage.clear()}>
             <Logo>
               <img src="/white-logo.png" alt="Logo Zé Delivery" />
             </Logo>

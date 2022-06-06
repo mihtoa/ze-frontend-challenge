@@ -14,10 +14,16 @@ const Wrapper = styled.div`
   border: 1px solid #ebe7e7;
   box-shadow: 0px 0px 12px #e3e2e2;
   padding: 1rem;
+
+  p {
+    line-height: 1.2;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
 `
 
 const Figure = styled.figure`
-  padding-bottom: 80%;
+  padding-bottom: 100%;
   position: relative;
 
   > img {
@@ -61,7 +67,11 @@ export default function ProductsList() {
   const [distributorLS] = useLocalStorage(DISTRIBUTOR_LOCAL_STORAGE_KEY)
   const id = useId()
 
-  const { loading, error, data } = useQuery(PRODUCTS_QUERY, {
+  const {
+    loading = true,
+    error,
+    data,
+  } = useQuery(PRODUCTS_QUERY, {
     variables: {
       pocId: distributorLS.id,
     },
@@ -74,7 +84,7 @@ export default function ProductsList() {
     return (
       <Wrapper key={id + index}>
         <Figure>
-          <img src={product.image} alt={product.title} />
+          <img loading="lazy" src={product.image} alt={product.title} />
         </Figure>
         <p>{product.title}</p>
         <p>R$ {product.price.toFixed(2).replace('.', ',')}</p>
