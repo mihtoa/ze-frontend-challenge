@@ -34,6 +34,13 @@ We want you to feel free to develop the markup the way you want, we have no wire
 - GraphQL
 - Apollo Server
 
+## Best practices
+
+- Semantic commits
+- Code formatter
+- Types
+- Tests
+
 ## Scripts
 
 - `npm start`
