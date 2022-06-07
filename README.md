@@ -27,6 +27,7 @@ We want you to feel free to develop the markup the way you want, we have no wire
 - Webpack
 - React
 - TypeScript
+- CSS native variables
 - Styled Components
 - Prettier
 - Jest

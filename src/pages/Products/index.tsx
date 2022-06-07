@@ -2,8 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Container } from '../../common'
-import Categories from './Categories'
-import ProductsList from './ProductsList'
+import { Categories, ProductsList } from '../../components'
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 12rem);
@@ -11,9 +10,21 @@ const Wrapper = styled.div`
 `
 
 const List = styled.div`
+  margin: 1rem 0 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   gap: 1rem;
+`
+
+const CategoriesList = styled(List)`
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  gap: 0.5rem 1rem;
+`
+
+const Title = styled.h2`
+  font-size: 1.1rem;
+  font-weight: lighter;
+  letter-spacing: 0.05rem;
 `
 
 export default function Products() {
@@ -21,9 +32,11 @@ export default function Products() {
     <main>
       <Container>
         <Wrapper>
-          <h4>Categorias</h4>
-          <Categories />
-          <h4>Produtos</h4>
+          <Title>CATEGORIAS</Title>
+          <CategoriesList>
+            <Categories />
+          </CategoriesList>
+          <Title>PRODUTOS</Title>
           <List>
             <ProductsList />
           </List>

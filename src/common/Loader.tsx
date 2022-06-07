@@ -1,11 +1,26 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100px;
+
+  > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`
 
 export default function Loader() {
   return (
-    <div style={{ color: 'var(--primary-color)' }}>
+    <Wrapper style={{ color: 'var(--primary-color)' }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 100 100"
+        viewBox="-20 5 100 100"
         width="80px"
         height="80px">
         <circle cx="6" cy="50" r="6" fill="currentColor">
@@ -36,6 +51,6 @@ export default function Loader() {
             values="0 5 ; 0 -5; 0 5"></animateTransform>
         </circle>
       </svg>
-    </div>
+    </Wrapper>
   )
 }
