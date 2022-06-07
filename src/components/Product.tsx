@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 const Price = styled.p`
   font-size: 0.65rem;
   font-weight: bold;
-  opacity: 0.65;
+  opacity: 0.55;
 `
 
 const Figure = styled.figure`

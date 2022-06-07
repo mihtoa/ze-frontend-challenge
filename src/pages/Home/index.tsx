@@ -55,12 +55,26 @@ export default function Home() {
     event.preventDefault()
     const { lat, lng } = await useCoordinates(config)
 
+    if (!lat || !lng) {
+      alert(
+        'Endereço inválido. Tente o endereço: "Rua Ricardo Lunardelli, 123, 04719-070, São Paulo" :)'
+      )
+      return
+    }
+
     getDistributor({
       variables: {
         pocSearchLat: lat.toString(),
         pocSearchLong: lng.toString(),
       },
     })
+
+    if (!distributor) {
+      alert(
+        'Não há distribuidores disponíveis nesse local, tente o endereço para teste: "Rua Ricardo Lunardelli, 123, 04719-070, São Paulo" :)'
+      )
+      return
+    }
 
     setDistributorLS(DISTRIBUTOR_LOCAL_STORAGE_KEY, distributor?.pocSearch[0])
   }

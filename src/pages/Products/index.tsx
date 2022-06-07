@@ -9,14 +9,10 @@ const Wrapper = styled.div`
   margin: 2rem 0;
 `
 
-const List = styled.div`
+const CategoriesList = styled.div`
+  width: 100%;
   margin: 1rem 0 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-  gap: 1rem;
-`
-
-const CategoriesList = styled(List)`
   grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
   gap: 0.5rem 1rem;
 `
@@ -37,9 +33,9 @@ export default function Products() {
             <Categories />
           </CategoriesList>
           <Title>PRODUTOS</Title>
-          <List>
+          <div>
             <ProductsList />
-          </List>
+          </div>
         </Wrapper>
       </Container>
     </main>

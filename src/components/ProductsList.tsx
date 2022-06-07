@@ -1,4 +1,5 @@
 import React, { useId } from 'react'
+import styled from 'styled-components'
 
 import { useLocation } from 'react-router-dom'
 import { useQuery, gql } from '@apollo/client'
@@ -31,6 +32,19 @@ export const PRODUCTS_QUERY = gql`
   }
 `
 
+const List = styled.div`
+  width: 100%;
+  margin: 1rem 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 0.25fr));
+  justify-content: center;
+  gap: 1rem;
+`
+
+const Empty = styled.div`
+  margin: 2rem 0;
+`
+
 function useQueryParams() {
   const { search } = useLocation()
   return React.useMemo(() => new URLSearchParams(search), [search])
@@ -59,10 +73,14 @@ export default function ProductsList(distributor: { id?: string }) {
   if (loading) return <Loader />
 
   return data.poc.products.length > 0 ? (
-    data?.poc?.products?.map((product: any, index: number) => (
-      <Product key={id + index} product={product} />
-    ))
+    <List>
+      {data?.poc?.products?.map((product: any, index: number) => (
+        <Product key={id + index} product={product} />
+      ))}
+    </List>
   ) : (
-    <p>Nenhum produto encontrado</p>
+    <Empty>
+      <p>Nenhum produto encontrado :/</p>
+    </Empty>
   )
 }
