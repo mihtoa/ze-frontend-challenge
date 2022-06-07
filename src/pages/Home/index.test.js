@@ -2,13 +2,13 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 
-import App from './App'
+import Home from '.'
 
-describe('App', () => {
-  test('renders App component', () => {
+describe('Home', () => {
+  test('renders Home component', () => {
     render(
       <MockedProvider>
-        <App />
+        <Home />
       </MockedProvider>
     )
   })

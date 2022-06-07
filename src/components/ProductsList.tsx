@@ -7,7 +7,7 @@ import useLocalStorage from '../hooks/useLocalStorage'
 import { Loader } from '../common'
 import { Product } from '../components'
 
-const PRODUCTS_QUERY = gql`
+export const PRODUCTS_QUERY = gql`
   query Poc(
     $pocId: String!
     $productsSearch: String
@@ -36,9 +36,11 @@ function useQueryParams() {
   return React.useMemo(() => new URLSearchParams(search), [search])
 }
 
-export default function ProductsList() {
+export default function ProductsList(distributor: { id?: string }) {
   const DISTRIBUTOR_LOCAL_STORAGE_KEY = 'current_distributor'
-  const [distributorLS] = useLocalStorage(DISTRIBUTOR_LOCAL_STORAGE_KEY)
+  const [distributorLS] = useLocalStorage(DISTRIBUTOR_LOCAL_STORAGE_KEY) || [
+    distributor,
+  ]
   const category = useQueryParams().get('categoria')
   const id = useId()
 
@@ -48,7 +50,7 @@ export default function ProductsList() {
     data,
   } = useQuery(PRODUCTS_QUERY, {
     variables: {
-      pocId: distributorLS.id,
+      pocId: distributorLS?.id,
       ...(category && { productsCategoryId: category }),
     },
   })
