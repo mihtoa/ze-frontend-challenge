@@ -6,7 +6,9 @@ This project is a frontend challenge requested by a Zé Delivery job application
 
 ## Instructions
 
-Use de following address to test: "Rua Ricardo Lunardelli, 123, 04719-070, São Paulo" (the other address from the test instructions is returning an empty array).
+- Run `npm i` to install project dependencies.
+- Run `npm start` to init de development mode. It will open an tab in http://localhost:8080/.
+- Use de following address to test: "Rua Ricardo Lunardelli, 123, 04719-070, São Paulo" (the other address from the test instructions is returning an empty array).
 
 ## The challenge
 
