@@ -27,7 +27,7 @@ const Title = styled.h2`
   text-align: center;
 `
 
-const DISTRIBUTOR_QUERY = gql`
+export const DISTRIBUTOR_QUERY = gql`
   query PocSearch($pocSearchLat: String!, $pocSearchLong: String!) {
     pocSearch(lat: $pocSearchLat, long: $pocSearchLong) {
       id

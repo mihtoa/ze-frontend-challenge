@@ -32,6 +32,11 @@ const Anchor = styled(Link)`
   }
 `
 
+type TypeCategory = {
+  id: string
+  title: string
+}
+
 export default function Categories() {
   const { loading, error, data } = useQuery(CATEGORIES_QUERY)
   const id = useId()
@@ -39,7 +44,7 @@ export default function Categories() {
   if (error) return <p>Ops! Algo deu errado</p>
   if (loading) return <Loader />
 
-  return data?.categories.map((category: any, index: number) => {
+  return data?.categories.map((category: TypeCategory, index: number) => {
     return (
       <Anchor to={`?categoria=${category.id}`} key={id + index}>
         {category.title}

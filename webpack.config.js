@@ -35,7 +35,7 @@ module.exports = {
     preferRelative: true,
     alias: {
       '@hooks': path.resolve(__dirname, './src/hooks/'),
-    }
+    },
   },
   output: {
     path: path.resolve(__dirname, 'build'),

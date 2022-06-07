@@ -1,6 +1,6 @@
 import Categories from './Categories'
 import Form from './Form'
 import Product from './Product'
-import ProductsList from './ProductsList'
+import ProductsList, { PRODUCTS_QUERY } from './ProductsList'
 
-export { Categories, Form, Product, ProductsList }
+export { Categories, Form, Product, ProductsList, PRODUCTS_QUERY }

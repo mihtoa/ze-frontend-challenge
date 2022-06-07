@@ -88,7 +88,18 @@ const Controls = styled.div`
   }
 `
 
-export default function Product({ product }: any) {
+type TypeProduct = {
+  id: string
+  title: string
+  image: string
+  price: number
+  category: {
+    id: string
+    title: string
+  }
+}
+
+export default function Product({ product }: { product: TypeProduct }) {
   const [quantity, setQuantity] = useState(0)
 
   return (

@@ -44,17 +44,17 @@ We want you to feel free to develop the markup the way you want, we have no wire
 
 ## Scripts
 
+- `npm run build`
+Compile the application in production mode to `dist` folder.
+
+- `npm run prettier`
+Run Prettier to format files.
+
 - `npm start`
 Start the application in development mode.
 
 - `npm test`
 Run tests using Jest and Testing Library.
-
-- `npm run prettier`
-Run Prettier to format files.
-
-- `npm run build`
-Compile the application in production mode to `dist` folder.
 
 - - -
 
