@@ -39,7 +39,7 @@ export const DISTRIBUTOR_QUERY = gql`
 
 export default function Home() {
   const [address, setAdress] = useState('')
-  const apiKey = 'AIzaSyDTCQZ3MnGV5CuuRIKXd5WP3t9LVdHgAx4'
+  const apiKey = process.env.GEOCODING_API_KEY
   const config = { apiKey, address }
 
   const DISTRIBUTOR_LOCAL_STORAGE_KEY = 'current_distributor'

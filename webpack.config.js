@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 const env = process.env.NODE_ENV || 'development'
 const isDevelopment = env === 'development'
@@ -29,6 +30,7 @@ module.exports = {
       },
       template: 'src/index.html',
     }),
+    new Dotenv(),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
