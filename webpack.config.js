@@ -20,13 +20,14 @@ module.exports = {
   },
   devServer: {
     open: true,
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       favicon: './public/favicon.ico',
       meta: {
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-        'theme-color': 'yellow',
+        'theme-color': '#FFC500',
       },
       template: 'src/index.html',
     }),
