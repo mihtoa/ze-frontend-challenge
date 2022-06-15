@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import LazyImage from './LazyImage'
+
 import * as Style from './Product.style'
 
 export type TypeProduct = {
@@ -19,8 +21,7 @@ export default function Product({ product }: { product: TypeProduct }) {
   return (
     <Style.Wrapper>
       <Style.Figure>
-        <img
-          loading="lazy"
+        <LazyImage
           src={product.image}
           alt={`Imagem do produto ${product.title}`}
         />

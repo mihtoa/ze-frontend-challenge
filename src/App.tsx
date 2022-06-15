@@ -1,21 +1,25 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React, { Suspense, lazy } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import { GlobalStyle } from './App.style'
 
-import { Header, Footer } from './common'
-import { Home, Products } from './pages'
+import { Header, Footer, Loader } from './common'
+
+const Home = lazy(() => import('./pages/Home'))
+const Products = lazy(() => import('./pages/Products'))
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <GlobalStyle />
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="produtos" element={<Products />} />
-      </Routes>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="produtos" element={<Products />} />
+        </Routes>
+      </Suspense>
       <Footer />
-    </BrowserRouter>
+    </Router>
   )
 }

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -23,22 +23,28 @@ const Price = styled.p`
   opacity: 0.55;
 `
 
+const Shine = keyframes`
+  to {
+    background-position: 100% 0, 0 0;
+  }
+`
+
 const Figure = styled.figure`
   padding-bottom: 90%;
   position: relative;
   margin-bottom: 0.5rem;
-
-  > img {
-    display: block;
-    max-width: 100%;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    object-fit: contain;
-    transform: scale(0.85);
-  }
+  transform: scale(0.85);
+  background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 80%
+    ),
+    #e5e5e5;
+  background-repeat: repeat-y;
+  background-size: 50px 200px;
+  background-position: 0 0;
+  animation: ${Shine} 1s infinite;
 `
 
 const Controls = styled.div`
