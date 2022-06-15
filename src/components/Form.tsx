@@ -1,70 +1,16 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { ChangeEvent, FormEventHandler } from 'react'
 
-const Wrapper = styled.div`
-  width: 100%;
-  margin: 0 auto;
-`
+import * as Style from './Form.style'
 
-const FormStyled = styled.form`
-  height: 3rem;
-  width: 100%;
-  max-width: 30rem;
-  margin: 0 auto;
-  display: block;
-  position: relative;
-`
+type TypeForm = {
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void
+  onSubmit: FormEventHandler<Element>
+}
 
-const Icon = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 2.5rem 0 1.5rem;
-  opacity: 0.5;
-`
-
-const Input = styled.input`
-  background-color: white;
-  background-size: 3rem;
-  border: 3px solid #adadad;
-  border-radius: 40px;
-  outline: none;
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-
-  &:focus {
-    border-color: var(--dark-gray);
-  }
-`
-
-const ArrowButton = styled.button`
-  float: right;
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 2.25rem;
-  width: 3rem;
-  font-size: 2rem;
-  color: var(--dark-gray);
-  z-index: 1;
-  cursor: pointer;
-`
-
-export default function Form({
-  onChange,
-  onSubmit,
-}: {
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  onSubmit: React.FormEventHandler<Element>
-}) {
+export default function Form({ onChange, onSubmit }: TypeForm) {
   return (
-    <Wrapper>
-      <Icon>
+    <Style.Wrapper>
+      <Style.Icon>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="10rem"
@@ -87,10 +33,10 @@ export default function Form({
             fill="currentColor"
             d="M458.03 428.9c-2.273-2.559-6.203-2.793-8.715-.473-2.558 2.274-2.793 6.203-.472 8.715l43.758 49.016-88.56 14.301-169.69-70.328c-3.171-1.324-6.773.188-8.097 3.363-1.324 3.172.187 6.774 3.363 8.098L307 473.702l-97.746 34.097c-3.219 1.137-4.926 4.64-3.789 7.863a6.186 6.186 0 005.824 4.168c.664 0 1.375-.093 2.035-.332l110.87-38.645 56.547 23.391-55.836 8.997c-3.363.519-5.683 3.742-5.113 7.105.473 3.031 3.125 5.21 6.11 5.21.332 0 .664-.046.996-.093l75.633-12.219 41.059 17a5.864 5.864 0 002.367.473 6.194 6.194 0 005.73-3.836c1.325-3.172-.187-6.773-3.363-8.098l-22.543-9.328 76.578-12.359 8.523 9.52a6.216 6.216 0 008.762.52c2.559-2.274 2.793-6.204.473-8.716l-3.219-3.648 18.043-2.938c3.363-.52 5.684-3.742 5.113-7.105-.52-3.363-3.742-5.684-7.105-5.113l-25.86 4.168z"></path>
         </svg>
-      </Icon>
+      </Style.Icon>
 
-      <FormStyled onSubmit={onSubmit}>
-        <Input
+      <Style.FormStyled onSubmit={onSubmit}>
+        <Style.Input
           type="text"
           name="address"
           id="inputAdress"
@@ -98,8 +44,8 @@ export default function Form({
           onChange={onChange}
           required
         />
-        <ArrowButton type="submit">→</ArrowButton>
-      </FormStyled>
-    </Wrapper>
+        <Style.ArrowButton type="submit">→</Style.ArrowButton>
+      </Style.FormStyled>
+    </Style.Wrapper>
   )
 }

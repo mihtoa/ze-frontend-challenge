@@ -1,31 +1,14 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState, FormEventHandler } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useLazyQuery, gql } from '@apollo/client'
 
 import useCoordinates from '../../hooks/useCoordinates'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
+import * as Style from './Home.style'
+
 import { Container } from '../../common'
-import Form from '../../components/Form'
-
-const Main = styled.main`
-  background-color: var(--primary-color);
-`
-
-const Wrapper = styled.div`
-  min-height: calc(100vh - 10rem);
-  padding: 3rem 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
-
-const Title = styled.h2`
-  font-weight: normal;
-  font-size: 2.5rem;
-  text-align: center;
-`
+import { Form } from '../../components'
 
 export const DISTRIBUTOR_QUERY = gql`
   query PocSearch($pocSearchLat: String!, $pocSearchLong: String!) {
@@ -51,7 +34,7 @@ export default function Home() {
   const [getDistributor, { data: distributor }] =
     useLazyQuery(DISTRIBUTOR_QUERY)
 
-  const handleSubmit: React.FormEventHandler<Element> = async (event) => {
+  const handleSubmit: FormEventHandler<Element> = async (event) => {
     event.preventDefault()
     const { lat, lng } = await useCoordinates(config)
 
@@ -84,19 +67,19 @@ export default function Home() {
   }
 
   return (
-    <Main>
+    <Style.Main>
       <Container>
-        <Wrapper>
-          <Title>
+        <Style.Wrapper>
+          <Style.Title>
             <strong>Bebidas geladas</strong> a <strong>preço</strong> de
             <br /> mercado na sua casa <strong>agora</strong>
-          </Title>
+          </Style.Title>
           <Form
             onChange={(event) => setAdress(event.target.value)}
             onSubmit={handleSubmit}
           />
-        </Wrapper>
+        </Style.Wrapper>
       </Container>
-    </Main>
+    </Style.Main>
   )
 }

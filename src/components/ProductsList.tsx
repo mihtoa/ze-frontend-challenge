@@ -1,9 +1,12 @@
 import React, { useId } from 'react'
-import styled from 'styled-components'
 
 import { useLocation } from 'react-router-dom'
 import { useQuery, gql } from '@apollo/client'
-import useLocalStorage from '../hooks/useLocalStorage'
+import { useLocalStorage } from '../hooks'
+
+import * as Style from './ProductsList.style'
+
+import { TypeProduct } from './Product'
 
 import { Loader } from '../common'
 import { Product } from '../components'
@@ -30,19 +33,6 @@ export const PRODUCTS_QUERY = gql`
       }
     }
   }
-`
-
-const List = styled.div`
-  width: 100%;
-  margin: 1rem 0 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(8rem, 0.25fr));
-  justify-content: center;
-  gap: 1rem;
-`
-
-const Empty = styled.div`
-  margin: 2rem 0;
 `
 
 function useQueryParams() {
@@ -73,14 +63,14 @@ export default function ProductsList(distributor: { id?: string }) {
   if (loading) return <Loader />
 
   return data.poc.products.length > 0 ? (
-    <List>
-      {data?.poc?.products?.map((product: any, index: number) => (
+    <Style.List>
+      {data?.poc?.products?.map((product: TypeProduct, index: number) => (
         <Product key={id + index} product={product} />
       ))}
-    </List>
+    </Style.List>
   ) : (
-    <Empty>
+    <Style.Empty>
       <p>Nenhum produto encontrado :/</p>
-    </Empty>
+    </Style.Empty>
   )
 }
