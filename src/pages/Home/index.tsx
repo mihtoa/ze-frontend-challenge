@@ -7,7 +7,7 @@ import useLocalStorage from '../../hooks/useLocalStorage'
 
 import * as Style from './Home.style'
 
-import { Container } from '../../common'
+import { Container, Loader } from '../../common'
 import { Form } from '../../components'
 
 export const DISTRIBUTOR_QUERY = gql`
@@ -26,16 +26,18 @@ export default function Home() {
   const config = { apiKey, address }
 
   const DISTRIBUTOR_LOCAL_STORAGE_KEY = 'current_distributor'
-  const [distributorLS, setDistributorLS] = useLocalStorage(
+  const [distributorLocalStorage, setDistributorLocalStorage] = useLocalStorage(
     DISTRIBUTOR_LOCAL_STORAGE_KEY,
     null
   )
 
-  const [getDistributor, { data: distributor }] =
+  const [getDistributor, { called, loading, data: distributor }] =
     useLazyQuery(DISTRIBUTOR_QUERY)
+  const hasDistributors = distributor && distributor.pocSearch.length > 0
 
   const handleSubmit: FormEventHandler<Element> = async (event) => {
     event.preventDefault()
+
     const { lat, lng } = await useCoordinates(config)
 
     if (!lat || !lng) {
@@ -51,19 +53,25 @@ export default function Home() {
         pocSearchLong: lng.toString(),
       },
     })
-
-    if (!distributor) {
-      alert(
-        'Não há distribuidores disponíveis nesse local, tente o endereço para teste: "Rua Ricardo Lunardelli, 123, 04719-070, São Paulo" :)'
-      )
-      return
-    }
-
-    setDistributorLS(DISTRIBUTOR_LOCAL_STORAGE_KEY, distributor?.pocSearch[0])
   }
 
-  if (distributorLS) {
+  if (distributorLocalStorage) {
     return <Navigate to="/produtos" />
+  }
+
+  if (hasDistributors) {
+    setDistributorLocalStorage(
+      DISTRIBUTOR_LOCAL_STORAGE_KEY,
+      distributor?.pocSearch[0]
+    )
+
+    return <Navigate to="/produtos" />
+  }
+
+  if (called && !loading && !hasDistributors) {
+    alert(
+      'Não há distribuidores disponíveis nesse local, tente o endereço para teste: "Rua Ricardo Lunardelli, 123, 04719-070, São Paulo" :)'
+    )
   }
 
   return (
@@ -78,6 +86,7 @@ export default function Home() {
             onChange={(event) => setAdress(event.target.value)}
             onSubmit={handleSubmit}
           />
+          {called && loading && <Loader color="var(--dark-gray)" />}
         </Style.Wrapper>
       </Container>
     </Style.Main>

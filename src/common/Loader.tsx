@@ -15,9 +15,15 @@ const Wrapper = styled.div`
   }
 `
 
-export default function Loader() {
+type LoaderProps = {
+  color?: string
+}
+
+export default function Loader({
+  color = 'var(--primary-color)',
+}: LoaderProps) {
   return (
-    <Wrapper style={{ color: 'var(--primary-color)' }}>
+    <Wrapper style={{ color: color }}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="-20 5 100 100"
