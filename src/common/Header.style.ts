@@ -38,4 +38,17 @@ const Login = styled.a`
     color: var(--dark-gray);
   }
 `
-export { HeaderWrapper, Navigation, Logo, Login }
+const Address = styled.div`
+  color: var(--primary-color);
+  font-size: 0.7rem;
+  margin-left: 2rem;
+  overflow: hidden;
+
+  > p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+`
+
+export { HeaderWrapper, Navigation, Logo, Login, Address }

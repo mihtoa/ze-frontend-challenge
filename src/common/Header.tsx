@@ -5,18 +5,27 @@ import * as Style from './Header.style'
 
 import Container from './Container'
 
-export default function Header() {
+export default function Header({ address, setAddressLocalStorage }: { address: string, setAddressLocalStorage: Function }) {
   return (
     <Style.HeaderWrapper>
       <Container>
         <Style.Navigation>
-          <Link to="/" onClick={() => window.localStorage.clear()}>
+          <Link to="/" onClick={() => {
+            window.localStorage.clear()
+            setAddressLocalStorage(null)
+          }}>
             <Style.Logo>
               <img src="/white-logo.png" alt="Logo Zé Delivery" />
             </Style.Logo>
           </Link>
 
-          <Style.Login href="#">Entrar</Style.Login>
+          {address ? (
+            <Style.Address>
+              <p>{ address }</p>
+            </Style.Address>
+          ) : (
+            <Style.Login href="#">Entrar</Style.Login>
+          )}
         </Style.Navigation>
       </Container>
     </Style.HeaderWrapper>

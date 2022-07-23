@@ -1,6 +1,7 @@
 import React, { useState, FormEventHandler } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useLazyQuery, gql } from '@apollo/client'
+import { DISTRIBUTOR_LOCAL_STORAGE_KEY, ADDRESS_LOCAL_STORAGE_KEY } from '../../../constants'
 
 import useCoordinates from '../../hooks/useCoordinates'
 import useLocalStorage from '../../hooks/useLocalStorage'
@@ -20,19 +21,14 @@ export const DISTRIBUTOR_QUERY = gql`
   }
 `
 
-export default function Home() {
+export default function Home({ setAddressLocalStorage }: { setAddressLocalStorage: Function }) {
   const [address, setAdress] = useState('')
   const apiKey = process.env.GEOCODING_API_KEY
   const config = { apiKey, address }
 
-  const DISTRIBUTOR_LOCAL_STORAGE_KEY = 'current_distributor'
-  const [distributorLocalStorage, setDistributorLocalStorage] = useLocalStorage(
-    DISTRIBUTOR_LOCAL_STORAGE_KEY,
-    null
-  )
+  const [distributorLocalStorage, setDistributorLocalStorage] = useLocalStorage(DISTRIBUTOR_LOCAL_STORAGE_KEY, null)
 
-  const [getDistributor, { called, loading, data: distributor }] =
-    useLazyQuery(DISTRIBUTOR_QUERY)
+  const [getDistributor, { called, loading, data: distributor }] = useLazyQuery(DISTRIBUTOR_QUERY)
   const hasDistributors = distributor && distributor.pocSearch.length > 0
 
   const handleSubmit: FormEventHandler<Element> = async (event) => {
@@ -63,6 +59,11 @@ export default function Home() {
     setDistributorLocalStorage(
       DISTRIBUTOR_LOCAL_STORAGE_KEY,
       distributor?.pocSearch[0]
+    )
+
+    setAddressLocalStorage(
+      ADDRESS_LOCAL_STORAGE_KEY,
+      address
     )
 
     return <Navigate to="/produtos" />

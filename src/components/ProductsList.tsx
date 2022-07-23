@@ -2,7 +2,6 @@ import React, { useId } from 'react'
 
 import { useLocation } from 'react-router-dom'
 import { useQuery, gql } from '@apollo/client'
-import { useLocalStorage } from '../hooks'
 
 import * as Style from './ProductsList.style'
 
@@ -40,11 +39,8 @@ function useQueryParams() {
   return React.useMemo(() => new URLSearchParams(search), [search])
 }
 
-export default function ProductsList(distributor: { id?: string }) {
-  const DISTRIBUTOR_LOCAL_STORAGE_KEY = 'current_distributor'
-  const [distributorLS] = useLocalStorage(DISTRIBUTOR_LOCAL_STORAGE_KEY) || [
-    distributor,
-  ]
+export default function ProductsList({ distributor }: { distributor: { id?: string } }) {
+  const distributorLS = distributor
   const category = useQueryParams().get('categoria')
   const id = useId()
 
